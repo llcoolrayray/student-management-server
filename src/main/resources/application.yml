@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.106.198.4:3306/student-management?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: WRX65369wrx
+
+  jpa:
+    hibernate:
+      ddl-auto: update
