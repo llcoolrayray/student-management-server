@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.studentmanagementserver.dao.TeachingPlanMapper">
+  <resultMap id="BaseResultMap" type="com.example.studentmanagementserver.pojo.TeachingPlan">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="semester" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="teacher_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="course_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="department_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="course_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="department_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="teacher_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.studentmanagementserver.pojo.TeachingPlan">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="semester" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="teacher_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="course_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="department_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="course_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="department_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="teacher_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, semester, teacher_id, course_id, department_id, course_name, department_name, 
+    teacher_name
+  </sql>
+  <sql id="Blob_Column_List">
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from teaching_plan
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from teaching_plan
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.studentmanagementserver.pojo.TeachingPlan">
+    insert into teaching_plan (id, semester, teacher_id, course_id, department_id, remark)
+    values (#{id,jdbcType=INTEGER}, #{semester,jdbcType=VARCHAR}, #{teacherId,jdbcType=INTEGER}, 
+      #{courseId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER}, #{remark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.studentmanagementserver.pojo.TeachingPlan">
+    insert into teaching_plan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="semester != null">
+        semester,
+      </if>
+      <if test="teacherId != null">
+        teacher_id,
+      </if>
+      <if test="courseId != null">
+        course_id,
+      </if>
+      <if test="departmentId != null">
+        department_id,
+      </if>
+      <if test="courseName != null">
+        course_name,
+      </if>
+      <if test="departmentName != null">
+        department_name,
+      </if>
+      <if test="teacherName != null">
+        teacher_name,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="semester != null">
+        #{semester,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null">
+        #{teacherId,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null">
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="courseName != null">
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentName != null">
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null">
+        #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.studentmanagementserver.pojo.TeachingPlan">
+    update teaching_plan
+    <set>
+      <if test="semester != null">
+        semester = #{semester,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null">
+        teacher_id = #{teacherId,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null">
+        course_id = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="departmentId != null">
+        department_id = #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.studentmanagementserver.pojo.TeachingPlan">
+    update teaching_plan
+    set semester = #{semester,jdbcType=VARCHAR},
+      teacher_id = #{teacherId,jdbcType=INTEGER},
+      course_id = #{courseId,jdbcType=INTEGER},
+      department_id = #{departmentId,jdbcType=INTEGER},
+      course_name = #{courseName,jdbcType=VARCHAR},
+      department_name = #{departmentName,jdbcType=VARCHAR},
+      teacher_name = #{teacherName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.studentmanagementserver.pojo.TeachingPlan">
+    update teaching_plan
+    set semester = #{semester,jdbcType=VARCHAR},
+      teacher_id = #{teacherId,jdbcType=INTEGER},
+      course_id = #{courseId,jdbcType=INTEGER},
+      department_id = #{departmentId,jdbcType=INTEGER},
+      course_name = #{courseName,jdbcType=VARCHAR},
+      department_name = #{departmentName,jdbcType=VARCHAR},
+      teacher_name = #{teacherName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findAll" resultType="com.example.studentmanagementserver.pojo.TeachingPlan">
+    select t1.*, d.name departmentName, c.name courseName, t.name teacherName
+    from teaching_plan t1
+    left join department d on t1.department_id = d.id
+    left join course c on t1.course_id = c.id
+    left join teacher t on t1.teacher_id = t.id
+  </select>
+</mapper>

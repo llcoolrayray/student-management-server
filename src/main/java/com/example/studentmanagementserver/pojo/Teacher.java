@@ -1,47 +1,54 @@
 package com.example.studentmanagementserver.pojo;
 
-
 public class Teacher {
+    private Integer id;
 
-  private long id;
-  private String name;
-  private String username;
-  private String password;
+    private String name;
 
+    private String username;
 
-  public long getId() {
-    return id;
-  }
+    private String password;
 
-  public void setId(long id) {
-    this.id = id;
-  }
+    public Teacher(Integer id, String name, String username, String password) {
+        this.id = id;
+        this.name = name;
+        this.username = username;
+        this.password = password;
+    }
 
+    public Teacher() {
+        super();
+    }
 
-  public String getName() {
-    return name;
-  }
+    public Integer getId() {
+        return id;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
+    public String getName() {
+        return name;
+    }
 
-  public String getUsername() {
-    return username;
-  }
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
+    public String getUsername() {
+        return username;
+    }
 
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
+    }
 
-  public String getPassword() {
-    return password;
-  }
+    public String getPassword() {
+        return password;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
 }
